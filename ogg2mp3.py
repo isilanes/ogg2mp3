@@ -1,7 +1,34 @@
 #!/usr/bin/python
 # coding=utf-8
 
-# Convert OGG file to MP2 (renamed to .mp3).
+'''
+ogg2mp3
+(c) 2008, Iñaki Silanes
+
+LICENSE
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License (version 2), as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details (http://www.gnu.org/licenses/gpl.txt).
+
+DESCRIPTION
+
+Converts OGG filse to MP2 (renamed to .mp3), and the other way around.
+
+USAGE
+
+% ogg2mp3 [options] file-or-dir
+
+VERSION
+
+svn_revision = 1
+
+'''
 
 import copy
 import glob
