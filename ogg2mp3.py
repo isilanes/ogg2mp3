@@ -180,7 +180,7 @@ for f in listout:
   # Produce WAV:
   if o.reverse:
     # MP3 --> WAV
-    cmnd = 'mp3-decoder "%s" -w "%s.wav"' % (f,baseout)
+    cmnd = 'mp3-decoder -w "%s.wav" "%s"' % (baseout,f)
 
   else:
     # OGG --> WAV
