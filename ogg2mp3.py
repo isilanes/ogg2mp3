@@ -121,7 +121,7 @@ while there_are_dirs:
           print 'Including %s' % (li)
       else:
         if o.verbose:
-          print 'Neglecting %s' % (li)
+          print 'Neglecting %s because extension does not match required one (%s)' % (li,iext)
 
 #------------------------------------------------------------------------------------------#
 
@@ -147,6 +147,7 @@ for f in listout:
     baseout = '%s/%s' % (o.dir,baseout)
 
   else:
+
     try:
       artist = dma(tags['artist'])
       artist = dmf(artist)
@@ -165,6 +166,8 @@ for f in listout:
       year = 1000
 
     outdir = '%s/%s/%04i-%s' % (o.dir,artist,year,album)
+    if type(outdir) is unicode:
+      outdir = outdir.encode('utf-8')
 
     if not o.dryrun and not os.path.isdir(outdir):
       os.makedirs(outdir)
