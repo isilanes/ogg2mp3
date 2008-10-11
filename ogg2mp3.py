@@ -42,6 +42,7 @@ import System as S
 
 dmf = DM.mk_proper_fn
 dma = DM.mk_proper_ascii
+dmu = DM.mk_proper_utf
 cdc = copy.deepcopy
 
 #------------------------------------------------------------------------------------------#
@@ -76,6 +77,11 @@ parser.add_option("-y", "--dryrun",
 		  action="store_true",
                   default=False)
 
+parser.add_option("-n", "--name",
+                  help="Build output file name from input filename. Default: build it from tracknum and title.",
+		  action="store_false",
+                  default=True)
+
 (o,args) = parser.parse_args()
 
 #------------------------------------------------------------------------------------------#
@@ -94,6 +100,15 @@ if o.reverse:
 else:
   iext = 'ogg'
   oext = 'mp3'
+
+#------------------------------------------------------------------------------------------#
+
+def afu(ins_str=None):
+  out_str = dma(ins_str)
+  out_str = dmf(out_str)
+  out_str = dmu(out_str)
+
+  return out_str
 
 #------------------------------------------------------------------------------------------#
 
@@ -134,11 +149,21 @@ for f in listout:
   # Generate output filename/dir from input:
   af   = f.split('/')
 
-  if o.reverse:
-    baseout = af[-1].replace('.mp3','')
+  if o.name:
+    try:
+      tn = int(tags['tracknumber'])
+    except:
+      tn = 1
+
+    try:
+      st = afu(tags['title'])
+    except:
+      st = 'unknown'
+
+    baseout = '%02i-%s' % (tn,st)
 
   else:
-    baseout = af[-1].replace('.ogg','')
+    baseout = af[-1].replace(iext,'')
 
   baseout = dma(baseout)
   baseout = dmf(baseout)
@@ -149,14 +174,12 @@ for f in listout:
   else:
 
     try:
-      artist = dma(tags['artist'])
-      artist = dmf(artist)
+      artist = afu(tags['artist'])
     except:
       artist = 'unknown_artist'
 
     try:
-      album = dma(tags['album'])
-      album = dmf(album)
+      album = afu(tags['album'])
     except:
       album = 'unknown_album'
 
