@@ -18,15 +18,19 @@ for more details (http://www.gnu.org/licenses/gpl.txt).
 
 DESCRIPTION
 
-Converts OGG filse to MP2 (renamed to .mp3), and the other way around.
+Converts OGG filse to MP3, and the other way around. Transfers tags if present.
 
 USAGE
 
 % ogg2mp3 [options] file-or-dir
 
+for options:
+
+% ogg2mp3 -h 
+
 VERSION
 
-svn_revision = 1
+svn_revision = r6 (2008-10-21 18:05:58)
 
 '''
 
@@ -40,6 +44,8 @@ import DataManipulation as DM
 import FileManipulation as FM
 import System as S
 
+#------------------------------------------------------------------------------------------#
+
 dmf = DM.mk_proper_fn
 dma = DM.mk_proper_ascii
 dmu = DM.mk_proper_utf
@@ -52,8 +58,8 @@ parser = optparse.OptionParser()
 
 parser.add_option("-d", "--dir",
                   dest="dir",
-                  help="Output directory. Default: ~/Downloads.",
-                  default="/home/isilanes/Downloads")
+                  help="Output directory. Default: present directory.",
+                  default=".")
 
 parser.add_option("-f", "--flat",
                   dest="flat",
@@ -73,7 +79,7 @@ parser.add_option("-r", "--reverse",
                   default=False)
 
 parser.add_option("-y", "--dryrun",
-                  help="Dry run: do nothing, just tell what would be done. Default: real run.",
+                  help="Dry run: do nothing, just tell what would be done. Implies --verbose. Default: real run.",
 		  action="store_true",
                   default=False)
 
