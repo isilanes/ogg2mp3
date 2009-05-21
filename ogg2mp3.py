@@ -30,19 +30,16 @@ for options:
 
 VERSION
 
-svn_revision = r6 (2008-10-21 18:05:58)
-
 '''
 
+import os
+import sys
 import copy
 import glob
 import optparse
-import os
-import sys
-
-import DataManipulation as DM
-import FileManipulation as FM
 import System as S
+import DataManipulation as DM
+import MusicManipulation as MM
 
 #------------------------------------------------------------------------------------------#
 
@@ -150,7 +147,7 @@ while there_are_dirs:
 for f in listout:
 
   # Get ID3 tags from input file
-  tags = FM.ID3read(f)
+  tags = MM.ID3read(f)
 
   # Generate output filename/dir from input:
   af   = f.split('/')
@@ -243,7 +240,7 @@ for f in listout:
   for t in tags:
     t  = t.lower()
     if not o.dryrun:
-      FM.ID3write('%s.%s' % (baseout,oext),t,tags[t])
+      MM.ID3write('%s.%s' % (baseout,oext),t,tags[t])
 
     if o.verbose:
       print "Tagging %16s : %s" % (t,tags[t])
