@@ -27,9 +27,6 @@ USAGE
 for options:
 
 % ogg2mp3 -h 
-
-VERSION
-
 '''
 
 import os
@@ -209,7 +206,7 @@ for f in listout:
   # Produce WAV:
   if o.reverse:
     # MP3 --> WAV
-    cmnd = 'mp3-decoder -w "%s.wav" "%s"' % (baseout,f)
+    cmnd = 'mpg123 -w "%s.wav" "%s"' % (baseout,f)
 
   else:
     # OGG --> WAV
