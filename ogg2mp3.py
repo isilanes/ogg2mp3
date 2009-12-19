@@ -41,7 +41,6 @@ import MusicManipulation as MM
 #------------------------------------------------------------------------------------------#
 
 dmf = DM.mk_proper_fn
-dma = DM.mk_proper_ascii
 dmu = DM.mk_proper_utf
 cdc = copy.deepcopy
 
@@ -104,8 +103,7 @@ else:
 #------------------------------------------------------------------------------------------#
 
 def afu(ins_str=None):
-  out_str = dma(ins_str)
-  out_str = dmf(out_str)
+  out_str = dmf(ins_str)
   out_str = dmu(out_str)
 
   return out_str
@@ -165,7 +163,6 @@ for f in listout:
   else:
     baseout = af[-1].replace(iext,'')
 
-  baseout = dma(baseout)
   baseout = dmf(baseout)
 
   if o.flat:
