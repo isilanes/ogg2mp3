@@ -78,8 +78,8 @@ parser.add_option("-y", "--dryrun",
 
 parser.add_option("-n", "--name",
                   help="Build output file name from input filename. Default: build it from tracknum and title.",
-		  action="store_false",
-                  default=True)
+		  action="store_true",
+                  default=False)
 
 (o,args) = parser.parse_args()
 
@@ -148,6 +148,9 @@ for f in listout:
   af   = f.split('/')
 
   if o.name:
+    baseout = af[-1].replace('.'+iext,'')
+
+  else:
     try:
       tn = int(tags['tracknumber'])
     except:
@@ -159,9 +162,6 @@ for f in listout:
       st = 'unknown'
 
     baseout = '%02i-%s' % (tn,st)
-
-  else:
-    baseout = af[-1].replace(iext,'')
 
   baseout = dmf(baseout)
 
