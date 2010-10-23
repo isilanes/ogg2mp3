@@ -131,10 +131,11 @@ while there_are_dirs:
         listout.append(li)
 
         if o.verbose:
-          print 'Including %s' % (li)
+          print('Including {0}'.format(li))
       else:
-        if o.verbose:
-          print 'Neglecting %s because extension does not match required one (%s)' % (li,iext)
+          if o.verbose:
+              fmt = 'Neglecting {0} because extension does not match required one ({1})'
+              print(fmt.format(li,iext))
 
 #------------------------------------------------------------------------------------------#
 
@@ -195,10 +196,10 @@ for f in listout:
     baseout = '%s/%s' % (outdir,baseout)
 
   if o.verbose:
-    print 'IN:  %s' % (f)
-    print 'WAV: %s.wav' % (baseout)
-    print 'OUT: %s.%s' % (baseout,oext)
-    print ''
+      print('IN:  {0}'.format(f))
+      print('WAV: {0}.wav'.format(baseout))
+      print('OUT: {0}.{1}'.format(baseout,oext))
+      print('')
 
   # Produce WAV:
   if o.reverse:
@@ -210,7 +211,7 @@ for f in listout:
     cmnd = 'oggdec "%s" -o "%s.wav"' % (f,baseout)
 
   if o.verbose:
-    print cmnd
+      print(cmnd)
 
   if not o.dryrun:
     S.cli(cmnd)
@@ -225,7 +226,7 @@ for f in listout:
     cmnd = 'lame --vbr-new -V 0 "%s.wav" "%s.%s" && rm -f "%s.wav"' % (baseout,baseout,oext,baseout)
 
   if o.verbose:
-    print cmnd
+      print(cmnd)
 
   if not o.dryrun:
     S.cli(cmnd)
@@ -237,4 +238,4 @@ for f in listout:
       MM.ID3write('%s.%s' % (baseout,oext),t,tags[t])
 
     if o.verbose:
-      print "Tagging %16s : %s" % (t,tags[t])
+        print("Tagging {0:16s} : {1}".format(t,tags[t]))
