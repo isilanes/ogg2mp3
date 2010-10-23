@@ -81,6 +81,10 @@ parser.add_option("-n", "--name",
 		  action="store_true",
                   default=False)
 
+parser.add_option("-q", "--quality",
+                  help="Output quality. Default: 7.",
+                  default=7)
+
 (o,args) = parser.parse_args()
 
 #------------------------------------------------------------------------------------------#
@@ -218,8 +222,9 @@ for f in listout:
   
   # Encode WAV to OGG or MP3:
   if o.reverse:
-    # WAV --> OGG (and delete WAV)
-    cmnd = 'oggenc -q 7 "%s.wav" -o "%s.%s" && rm -f "%s.wav"' % (baseout,baseout,oext,baseout)
+      # WAV --> OGG (and delete WAV)
+      fmt = 'oggenc -q {0} "{1}.wav" -o "{1}.{2}" && rm -f "{1}.wav"'
+      cmnd = fmt.format(o.quality, baseout, oext)
 
   else:
     # WAV --> MP2 (and delete WAV)
