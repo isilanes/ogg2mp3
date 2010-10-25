@@ -3,7 +3,7 @@
 
 '''
 ogg2mp3
-(c) 2008, Iñaki Silanes
+(c) 2008-2010, Iñaki Silanes
 
 LICENSE
 
