@@ -3,7 +3,7 @@
 
 '''
 ogg2mp3
-(c) 2008-2010, Iñaki Silanes
+(c) 2008-2011, Iñaki Silanes
 
 LICENSE
 
@@ -238,9 +238,12 @@ for f in listout:
 
   # Insert correct ID3 tags into output MP3:
   for t in tags:
-    t  = t.lower()
-    if not o.dryrun:
-      MM.ID3write('%s.%s' % (baseout,oext),t,tags[t])
+      t  = t.lower()
+      if not o.dryrun:
+          MM.ID3write('%s.%s' % (baseout,oext),t,tags[t])
 
-    if o.verbose:
-        print("Tagging {0:16s} : {1}".format(t,tags[t]))
+      if o.verbose:
+          val = tags[t]
+          if type(val) == type(u''):
+              val = val.encode('utf-8')
+          print("Tagging {0:16s} : {1}".format(t, val))
