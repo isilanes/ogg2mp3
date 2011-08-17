@@ -107,10 +107,10 @@ else:
 #------------------------------------------------------------------------------------------#
 
 def afu(ins_str=None):
-  out_str = dmf(ins_str)
-  out_str = dmu(out_str)
-
-  return out_str
+    out_str = dmf(ins_str)
+    out_str = dmu(out_str)
+    
+    return out_str
 
 #------------------------------------------------------------------------------------------#
 
@@ -150,7 +150,7 @@ for f in listout:
   tags = MM.ID3read(f)
 
   # Generate output filename/dir from input:
-  af   = f.split('/')
+  af = f.split('/')
 
   if o.name:
     baseout = af[-1].replace('.'+iext,'')
