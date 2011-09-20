@@ -35,13 +35,13 @@ import copy
 import glob
 import optparse
 import System as S
-import DataManipulation as DM
-import MusicManipulation as MM
+import o2m.core as Core
+import o2m.tags as Tags
 
 #------------------------------------------------------------------------------------------#
 
-dmf = DM.mk_proper_fn
-dmu = DM.mk_proper_utf
+dmf = Core.mk_proper_fn
+dmu = Core.mk_proper_utf
 cdc = copy.deepcopy
 
 #------------------------------------------------------------------------------------------#
@@ -147,7 +147,7 @@ while there_are_dirs:
 for f in listout:
 
   # Get ID3 tags from input file
-  tags = MM.ID3read(f)
+  tags = Tags.ID3read(f)
 
   # Generate output filename/dir from input:
   af = f.split('/')
@@ -240,7 +240,7 @@ for f in listout:
   for t in tags:
       t  = t.lower()
       if not o.dryrun:
-          MM.ID3write('%s.%s' % (baseout,oext),t,tags[t])
+          Tags.ID3write('%s.%s' % (baseout,oext),t,tags[t])
 
       if o.verbose:
           val = tags[t]
