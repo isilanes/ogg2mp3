@@ -7,7 +7,7 @@ import re
 import sys
 import eyeD3
 import subprocess as sp
-import o2m.core as Core
+import libo2m.core as Core
 
 #------------------------------------------------------------------------------------------#
 

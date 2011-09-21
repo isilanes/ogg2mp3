@@ -35,13 +35,13 @@ import copy
 import glob
 import optparse
 import System as S
-import o2m.core as Core
-import o2m.tags as Tags
+import libo2m.core as LC
+import libo2m.tags as LT
 
 #------------------------------------------------------------------------------------------#
 
-dmf = Core.mk_proper_fn
-dmu = Core.mk_proper_utf
+dmf = LC.mk_proper_fn
+dmu = LC.mk_proper_utf
 cdc = copy.deepcopy
 
 #------------------------------------------------------------------------------------------#
@@ -147,7 +147,7 @@ while there_are_dirs:
 for f in listout:
 
   # Get ID3 tags from input file
-  tags = Tags.ID3read(f)
+  tags = LT.ID3read(f)
 
   # Generate output filename/dir from input:
   af = f.split('/')
@@ -240,7 +240,7 @@ for f in listout:
   for t in tags:
       t  = t.lower()
       if not o.dryrun:
-          Tags.ID3write('%s.%s' % (baseout,oext),t,tags[t])
+          LT.ID3write('%s.%s' % (baseout,oext),t,tags[t])
 
       if o.verbose:
           val = tags[t]
