@@ -166,7 +166,7 @@ def ID3write(fname,tname,tval,version=eyeD3.ID3_V2_3):
       tagstr += ' -t "%s=%s" ' % (tag,mt)
 
     cmnd = 'vorbiscomment -w %s %s' % (tagstr,fname)
-    s = sp.subprocess(cmnd, shell=True)
+    s = sp.Popen(cmnd, shell=True)
     s.communicate()
 
 #------------------------------------------------------------------------------------------#
